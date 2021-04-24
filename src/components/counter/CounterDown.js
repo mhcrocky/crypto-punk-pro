@@ -53,7 +53,7 @@ class Counter extends React.Component {
     };
     this.timer = null;
     this.countDownDate = {
-      unixEndDate: Number(moment('04-28-2021 16:59 pm', 'MM-DD-YYYY hh:mm A').format('X'))
+      unixEndDate: Number(moment('04-24-2021 23:24 pm', 'MM-DD-YYYY hh:mm A').format('X'))
     }; 
     
   }   
@@ -91,6 +91,7 @@ class Counter extends React.Component {
       });
     }
     else {
+      this.props.handleCountEnd()
       clearInterval(this.timer);
       this.timer = null;
       this.renderCountdownDate(this.countDownDate);

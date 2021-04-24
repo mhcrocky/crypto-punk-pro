@@ -1,7 +1,7 @@
 /* A simple iframe wrapper that makes 16:9 responsive embed */
 import React from 'react';
 
-export default ({ url, background="black", className="video" }) => {
+const ResponsiveVideoEmbed = ({ url, background="black", className="video" }) => {
   return (
     <div
       className={className}
@@ -28,3 +28,5 @@ export default ({ url, background="black", className="video" }) => {
     </div>
   );
 };
+
+export default ResponsiveVideoEmbed;
