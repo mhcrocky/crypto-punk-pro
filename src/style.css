@@ -1,0 +1,36 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap");
+
+
+@font-face {
+    font-family: 'Pixelfont';
+    src: local('Pixelfont'), url(./fonts/ka1.ttf) format('truetype');
+}
+
+.pixel-font {
+    font-family: Pixelfont;
+    font-weight: black;
+}
+
+.countdown {
+   
+    margin-top: 100px;
+    margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 38em;    
+    height: 20em;  
+}
+
+.countdown .card {    
+    display: inline-block;
+    margin: 10px;
+    padding: 10px 0;
+    font-family: Pixelfont;
+}
+
+.countdown-value {
+    color: #363535;
+    font-size: 2rem;
+    margin-bottom: 10px;
+    font-family: Pixelfont;
+}
