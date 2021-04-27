@@ -15,6 +15,8 @@ const LogoContainer = tw.div`flex items-center justify-center md:justify-start`;
 const LogoImg = tw.img`w-20`;
 const LogoText = tw.h5`ml-2 text-sm font-black tracking-wider`;
 
+const LinksContainer = tw.div`mt-8 font-medium flex flex-wrap justify-center items-center flex-col sm:flex-row`
+const Link = tw.a`border-b-2 border-transparent hocus:text-gray-300 hocus:border-gray-300 pb-1 transition duration-300 mt-2 mx-4`;
 
 const SocialLinksContainer = tw.div`mt-10`;
 const SocialLink = styled.a`
@@ -25,7 +27,7 @@ const SocialLink = styled.a`
 `;
 
 const CopyrightText = tw.p`text-center mt-10 font-medium tracking-wide text-sm text-gray-600`
-const MiniCenteredFooter = () => {
+export default () => {
   return (
     <Container>
       <Content>
@@ -47,5 +49,3 @@ const MiniCenteredFooter = () => {
     </Container>
   );
 };
-export default MiniCenteredFooter;
-

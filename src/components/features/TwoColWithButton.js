@@ -40,7 +40,7 @@ const PrimaryButton = styled(PrimaryButtonBase)(props => [
 ]);
 
 
-const TwoColWithButton = ({
+export default ({
   subheading = "",
   heading = (
     <>
@@ -83,5 +83,3 @@ const TwoColWithButton = ({
     </Container>
   );
 };
-
-export default TwoColWithButton;

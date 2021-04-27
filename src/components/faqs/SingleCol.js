@@ -38,7 +38,7 @@ const DecoratorBlob2 = styled(SvgDecoratorBlob2)`
 
 
 
-const SingleCol =  ({
+export default ({
   subheading = "FAQS",
   heading = "You have Questions ?",
   description = "And we have got answers to all of them. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
@@ -125,5 +125,3 @@ const SingleCol =  ({
     </Container>
   );
 };
-
-export default SingleCol;

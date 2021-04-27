@@ -3,12 +3,12 @@ import { motion } from "framer-motion";
 import tw from "twin.macro";
 import styled from "styled-components";
 import { css } from "styled-components/macro"; //eslint-disable-line
-// import { withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
 
 import useAnimatedNavToggler from "../../helpers/useAnimatedNavToggler.js";
 
-// import logo from "../../images/logo-full.png";
+import logo from "../../images/logo-full.png";
 import { ReactComponent as MenuIcon } from "feather-icons/dist/icons/menu.svg";
 import { ReactComponent as CloseIcon } from "feather-icons/dist/icons/x.svg";
 
@@ -60,7 +60,7 @@ export const DesktopNavLinks = tw.nav`
 
 
 
-export default  ({ roundedHeaderButton = false, logoLink, links, className, collapseBreakpointClass = "lg" }) => {
+export default ({ roundedHeaderButton = false, logoLink, links, className, collapseBreakpointClass = "lg" }) => {
   /*
    * This header component accepts an optionals "links" prop that specifies the links to render in the navbar.
    * This links props should be an array of "NavLinks" components which is exported from this file.
@@ -144,4 +144,3 @@ const collapseBreakPointCssMap = {
     mobileNavLinksContainer: tw`lg:hidden`
   }
 };
-
