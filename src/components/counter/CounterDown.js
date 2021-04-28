@@ -3,7 +3,7 @@ import React from 'react';
 import moment from 'moment';
 import { contextType } from 'react-modal';
 import { useContext } from 'react';
-
+import countAfterImage from 'images/design-illustration.svg';
 
 
 const CountdownDisplay = ({ countdown, unixEndDate }) => {
@@ -53,7 +53,7 @@ class Counter extends React.Component {
     };
     this.timer = null;
     this.countDownDate = {
-      unixEndDate: Number(moment('04-28-2021 16:59 pm', 'MM-DD-YYYY hh:mm A').format('X'))
+      unixEndDate: Number(moment('04-27-2021 21:50 pm', 'MM-DD-YYYY hh:mm A').format('X'))
     }; 
     
   }   
@@ -91,6 +91,7 @@ class Counter extends React.Component {
       });
     }
     else {
+      this.props.handleCountEnd();
       clearInterval(this.timer);
       this.timer = null;
       this.renderCountdownDate(this.countDownDate);
@@ -111,7 +112,10 @@ class Counter extends React.Component {
          <React.Fragment>   
               {this.state.isCountdownSet &&
                 <CountdownDisplay countdown={this.state.countdown} unixEndDate={this.renderCountdownDate().unixEndDate} />  
-              } 
+              }
+              {!this.state.isCountdownSet &&
+                <img src={countAfterImage}/>  
+              }
          </React.Fragment>
         )        
     }

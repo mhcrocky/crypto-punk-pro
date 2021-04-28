@@ -4,7 +4,7 @@ import tw from "twin.macro";
 //eslint-disable-next-line
 import { css } from "styled-components/macro";
 import Counter from "components/counter/CounterDown"
-import { withRouter } from 'react-router-dom'
+import { useHistory, withRouter } from 'react-router-dom'
 
 
 import ReactModalAdapter from "../../helpers/ReactModalAdapter.js";
@@ -63,18 +63,22 @@ const CloseModalButton = tw.button`absolute top-0 right-0 mt-8 mr-8 hocus:text-p
 function Hero({
                 heading= "Ad infinitum Ad",
                 description= "",
-                primaryButtonText= "Buy",
-                primaryButtonUrl= "#",
                 watchVideoButtonText= "Watch Video",
                 watchVideoYoutubeUrl= "https://www.youtube.com/embed/_GuOjXYl5ew",
-                imageSrc= DesignIllustration,
-                imageCss= null,
-                imageDecoratorBlob= false
               }){
-
+    const history = useHistory();
     const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [primaryBtnText,setPrimaryBtnText] = useState('Hold On');
     const toggleModal = () => setModalIsOpen(!modalIsOpen);
-
+    
+    const handleCountEnd= () =>{
+      setPrimaryBtnText('Buy now');
+    }
+    const handleBuyNowClick = () => {
+      if(primaryBtnText === 'Buy now'){
+        history.push(`/gotran`);
+      }
+    }
     return(
       <>      
         <Container>
@@ -83,7 +87,7 @@ function Hero({
               <Heading className="pixel-font">{heading}</Heading>
               <Paragraph>{description}</Paragraph>
               <Actions>
-                  <PrimaryButton className="pixel-font" as="a" href='#/'>Hold On</PrimaryButton>
+                  <PrimaryButton onClick={()=>handleBuyNowClick()} className="pixel-font" as="a" href='#/'>{primaryBtnText}</PrimaryButton>
                 <WatchVideoButton onClick={toggleModal}>
                   <span className="playIconContainer">
                     <PlayIcon className="playIcon" />
@@ -93,7 +97,7 @@ function Hero({
               </Actions>
             </LeftColumn>
             <RightColumn>
-                <Counter />
+                <Counter handleCountEnd={()=>handleCountEnd()} />
             </RightColumn>            
           </TwoColumn>
           <DecoratorBlob1 />

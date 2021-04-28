@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^4.11.4",
+    "@material-ui/icons": "^4.11.2",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
@@ -19,7 +21,6 @@
     "react-slick": "^0.25.2",
     "slick-carousel": "^1.8.1",
     "styled-components": "^5.0.1",
-    "tailwindcss": "^1.2.0",
     "twin.macro": "^1.0.0-alpha.7",
     "use-in-view": "^1.0.15"
   },
@@ -46,5 +47,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "autoprefixer": "^9.8.6",
+    "postcss": "^7.0.35",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.1.2"
   }
 }

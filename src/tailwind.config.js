@@ -1,5 +1,6 @@
 module.exports = {
   prefix: '',
+  purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
   important: false,
   separator: ':',
   theme: {
