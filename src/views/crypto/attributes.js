@@ -58,7 +58,7 @@ const CryptoAttr = (props) => {
                 {tmpdata.map((cell)=>{
                     return (
                         <tr>
-                            <CryptoTd onClick={()=>handleGoSearch('type',cell.type)}>{cell.type}</CryptoTd>
+                            <CryptoTd onClick={()=>handleGoSearch(cell.type)}>{cell.type}</CryptoTd>
                             <CryptoTd>{cell.punks.length}</CryptoTd>
                             <TableMoreExample punks={cell.punks} />
                         </tr>
@@ -85,7 +85,7 @@ const CryptoAttr = (props) => {
                 {tmpdata.map((cell)=>{
                     return (
                         <tr>
-                            <CryptoTd onClick={()=>handleGoSearch('attr',cell.attribute)}>{cell.attribute}</CryptoTd>
+                            <CryptoTd onClick={()=>handleGoSearch(cell.attribute)}>{cell.attribute}</CryptoTd>
                             <CryptoTd>{cell.punks.length}</CryptoTd>
                             <TableMoreExample punks={cell.punks} />
                         </tr>
@@ -115,7 +115,7 @@ const CryptoAttr = (props) => {
                 {tmpdata.map((cell)=>{
                     return (
                         <tr>
-                            <CryptoTd onClick={()=>handleGoSearch('attr_cnt',cell.attributes)}>{cell.attributes}</CryptoTd>
+                            <CryptoTd>{cell.attributes}</CryptoTd>
                             <CryptoTd>{cell.punks.length}</CryptoTd>
                             <TableMoreExample punks={cell.punks} />
                         </tr>
@@ -126,8 +126,8 @@ const CryptoAttr = (props) => {
         )
     }
 
-    const handleGoSearch = (type,link) => {
-        history.push(`/cryptopunks/search?${type}=${link}`);
+    const handleGoSearch = (link) => {
+        history.push(`/cryptopunks/search?query=${link}`);
     }
 
     const handleGoDetail = (link) => {
