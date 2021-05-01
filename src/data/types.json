@@ -1,1 +1,10 @@
-[ "Alien", "Ape", "Zombie", "Female", "Male", "Dog", "Cat", "Bird"]
+[ 
+    {"name":"Alien"},
+    {"name": "Ape"},
+    {"name": "Zombie"},
+    {"name": "Female"},
+    {"name": "Male"},
+    {"name": "Dog"},
+    {"name": "Cat"},
+    {"name": "Bird"}
+]

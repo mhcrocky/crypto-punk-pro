@@ -3,7 +3,6 @@ import tw from 'twin.macro';
 import ct_type from 'data/types';
 import ct_punk from 'data/data';
 import ct_attrs from 'data/attributes';
-import ct_attr_cnt from 'data/attr_count';
 import _, { map } from 'lodash';
 import { useHistory } from 'react-router-dom';
 const CryptoTable = tw.table`table-auto`;
@@ -29,14 +28,14 @@ const CryptoAttr = (props) => {
         return (
             <CryptoTd>
                 <PunkImg>
-                {props.punks.map((punk,key)=>{
+                {props.punks.length?props.punks.map((punk,key)=>{
                     if(punklen<8){
                         punklen++;
                         return(
-                        <img tw="cursor-pointer" onClick={()=>handleGoDetail(key)} src={`/images/${punk.src}`} />                            
+                        <img tw="cursor-pointer" onClick={()=>handleGoDetail(punk.id)} src={`/images/${punk.src}`} />                            
                         )
                     }
-                })}
+                }):''}
                 </PunkImg>
             </CryptoTd>
         )
@@ -44,7 +43,7 @@ const CryptoAttr = (props) => {
     const TypesTable = (props) => {
         let tmpdata= props.types.map((col)=>{
             let punks= _.filter(props.punks,function(punk){
-                if(punk.type ==col.type){
+                if(punk.type ==col.name){
                     return punk;
                 };
             })
@@ -58,7 +57,7 @@ const CryptoAttr = (props) => {
                 {tmpdata.map((cell)=>{
                     return (
                         <tr>
-                            <CryptoTd onClick={()=>handleGoSearch(cell.type)}>{cell.type}</CryptoTd>
+                            <CryptoTd onClick={()=>handleGoSearch(cell.name)}>{cell.name}</CryptoTd>
                             <CryptoTd>{cell.punks.length}</CryptoTd>
                             <TableMoreExample punks={cell.punks} />
                         </tr>
@@ -71,13 +70,14 @@ const CryptoAttr = (props) => {
     const AttributesTable = (props) => {
         let tmpdata= props.attrs.map((col)=>{
             let punks= _.filter(props.punks,function(punk){
-                if(punk.attr.indexOf(col.attribute)!==-1){
+                if(punk.attr.indexOf(col.name)!==-1){
                     return punk;
                 };
             })
             col.punks= punks
             return col;
         })
+
         return (
         <CryptoTable>
             <TableHeader/>
@@ -85,7 +85,7 @@ const CryptoAttr = (props) => {
                 {tmpdata.map((cell)=>{
                     return (
                         <tr>
-                            <CryptoTd onClick={()=>handleGoSearch(cell.attribute)}>{cell.attribute}</CryptoTd>
+                            <CryptoTd onClick={()=>handleGoSearch(cell.name)}>{cell.name}</CryptoTd>
                             <CryptoTd>{cell.punks.length}</CryptoTd>
                             <TableMoreExample punks={cell.punks} />
                         </tr>
@@ -97,27 +97,27 @@ const CryptoAttr = (props) => {
     }
     
     const AttrCountTable = (props) => {
-        let tmpdata= props.counts.map((col)=>{
+        let tmpdata = [];
+        for(var i = 0 ; i <= props.counts ; i ++){
             let punks= _.filter(props.punks,function(punk){
-                if(punk.attr_count ==col.count){
+                if(punk.attr.length ==i){
                     return punk;
                 };
             })
-            col.punks= punks
-            return col;
-        })
+            tmpdata.push(punks)
+        }    
         console.log(tmpdata)
-    
+
         return (
         <CryptoTable>
             <TableHeader/>
                 <CryptoTbody>
-                {tmpdata.map((cell)=>{
+                {tmpdata.map((cell,key)=>{
                     return (
                         <tr>
-                            <CryptoTd>{cell.attributes}</CryptoTd>
-                            <CryptoTd>{cell.punks.length}</CryptoTd>
-                            <TableMoreExample punks={cell.punks} />
+                            <CryptoTd>{key} Attributes</CryptoTd>
+                            <CryptoTd>{cell.length}</CryptoTd>
+                            <TableMoreExample punks={cell} />
                         </tr>
                     )
                 })}
@@ -139,7 +139,7 @@ const CryptoAttr = (props) => {
     <Container>
         <TypesTable types= {ct_type} punks = {ct_punk} />
         <AttributesTable attrs = {ct_attrs} punks={ct_punk} />
-        <AttrCountTable counts = {ct_attr_cnt} punks={ct_punk} />
+        <AttrCountTable counts = {4} punks={ct_punk} />
     </Container>
     )
 }

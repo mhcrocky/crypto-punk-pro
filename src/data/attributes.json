@@ -1,1 +1,26 @@
-["Dark Hair" ,"Purple Hair"  ,"Gold Chain" ,"Medical Mask" ,"Pencil" ,"Purple Lipstick"  ,"Silver Chain" ,"Vampire Hair" ,"Blonde Bob" ,"pen" ,"ear"  ,"mouse" ,"phone"  ,"Candle"  ,"Mobile"  ,"Pigtails"  ,"Knife"  ,"Welding Googles" ,"Buck Teeth" ,"Orange Side" ,"Tiara"  ,"Pilot Helmet" ,"Choker" ,"Beanie"]
+[
+    {"name":"Dark Hair" },
+    {"name":"Purple Hair"  },
+    {"name":"Gold Chain" },
+    {"name":"Medical Mask" },
+    {"name":"Pencil" },
+    {"name":"Purple Lipstick"  },
+    {"name":"Silver Chain" },
+    {"name":"Vampire Hair" },
+    {"name":"Blonde Bob" },
+    {"name":"pen" },
+    {"name":"ear"  },
+    {"name":"mouse" },
+    {"name":"phone"  },
+    {"name":"Candle"  },
+    {"name":"Mobile"  },
+    {"name":"Pigtails"  },
+    {"name":"Knife"  },
+    {"name":"Welding Googles" },
+    {"name":"Buck Teeth" },
+    {"name":"Orange Side" },
+    {"name":"Tiara"  },
+    {"name":"Pilot Helmet" },
+    {"name":"Choker" },
+    {"name":"Beanie"}
+]
