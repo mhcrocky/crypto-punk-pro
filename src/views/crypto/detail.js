@@ -1,18 +1,28 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import tw from 'twin.macro';
 import ct_punk from 'data/data';
+import _ from 'lodash';
 const Container = tw.div`relative mx-5`;
 const TwoColumn = tw.div`flex flex-col lg:flex-row md:items-center max-w-screen-xl mx-auto py-2 md:py-3`;
-const Grid = tw.div`grid grid-cols-3`;
+const Grid = tw.div`grid grid-cols-3 px-5`;
+const GridCol = tw.div`py-5`;
+const GoToSearch = tw.b``;
 
 const CryptoDetail = (props) => {
     const params = useParams();
-    console.log(ct_punk[params.crypto_id]);
     const [punk,setPunk] = useState({});
+    const history = useHistory();
     useEffect(()=>{
-        setPunk(ct_punk[params.crypto_id]);
+        ct_punk.map((cell)=>{
+            if(cell.id ==params.crypto_id){
+                setPunk(cell);
+            }
+        })
     },[])
+    const handleGoSearch = (link) => {
+        history.push(`/cryptopunks/search?query=${link}`);
+    }
     return(
     <>
         <div style={{background:'grey'}}>
@@ -23,20 +33,26 @@ const CryptoDetail = (props) => {
                 <h2>crypto punk</h2>
             </TwoColumn>
             <TwoColumn>
-                <h2>One of {punk.type} Punks.</h2>
+                <h2>One of <GoToSearch onClick={()=>handleGoSearch(punk.type)} >{punk.type}</GoToSearch> Punks.</h2>
             </TwoColumn>
             <TwoColumn>
                 <h2>Accesories</h2>
             </TwoColumn>
-            <TwoColumn>
-                <Grid>
+            <Grid>
                 {punk.attr?punk.attr.map((attr)=>{
-                    return (<div>
-                        {attr}
-                    </div>)
+                    let attr_punks= _.filter(ct_punk,function(punk){
+                        if(punk.attr.indexOf(attr)!==-1){
+                            return punk;
+                        };
+                    })
+                    return (
+                    <GridCol>
+                        <GoToSearch onClick={()=>handleGoSearch(attr)} >{attr}</GoToSearch>
+                        <br/>
+                        {attr_punks.length} Punks have this.
+                    </GridCol>)
                 }):''}
-                </Grid>
-            </TwoColumn>
+            </Grid>
         </Container>
     </>)
 }
