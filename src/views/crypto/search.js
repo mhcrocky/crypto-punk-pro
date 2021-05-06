@@ -10,6 +10,7 @@ const PunkImgs = tw.div`inline-flex`;
 const PunkImg = tw.img`cursor-pointer h-16`;
 const Container = tw.div`relative mx-5 pb-10`;
 const GridCol = tw.div`grid grid-cols-12`;
+const DivTitle = tw.div`border-b-2 border-gray-500`;
 function useQuery() {
     return new URLSearchParams(useLocation().search);
   }
@@ -78,11 +79,11 @@ const CryptoSearch = (props) => {
     return(
         <>
         <Container>
-            <div>{punks.length}  Punks found</div>
+            <DivTitle>{punks.length}  Punks found</DivTitle>
             <Punks punks={punks} />
         </Container>
         <Container>
-            <div>{punks.length}  Sales found</div>
+            <DivTitle>{punks.length}  Sales found</DivTitle>
             <Sales sales={sales} />
         </Container>
         </>

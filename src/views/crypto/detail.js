@@ -7,7 +7,7 @@ const Container = tw.div`relative mx-5`;
 const TwoColumn = tw.div`flex flex-col lg:flex-row md:items-center max-w-screen-xl mx-auto py-2 md:py-3`;
 const Grid = tw.div`grid grid-cols-3 px-5`;
 const GridCol = tw.div`py-5`;
-const GoToSearch = tw.b``;
+const GoToSearch = tw.b`cursor-pointer`;
 
 const CryptoDetail = (props) => {
     const params = useParams();
@@ -23,9 +23,12 @@ const CryptoDetail = (props) => {
     const handleGoSearch = (link) => {
         history.push(`/cryptopunks/search?query=${link}`);
     }
+    const name_funciton = (props) => {
+        console.log(props)
+    }
     return(
     <>
-        <div style={{background:'grey'}}>
+        <div style={{background:'grey'}} onClick={()=>name_funciton('dfsdfs')}>
             <img src={`/images/${punk.src}`} style={{height:'500px',margin:'auto',imageRendering: 'pixelated'}}/>
         </div>
         <Container>
