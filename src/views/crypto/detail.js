@@ -7,7 +7,9 @@ const Container = tw.div`relative mx-5`;
 const TwoColumn = tw.div`flex flex-col lg:flex-row md:items-center max-w-screen-xl mx-auto py-2 md:py-3`;
 const Grid = tw.div`grid grid-cols-3 px-5`;
 const GridCol = tw.div`py-5`;
-const GoToSearch = tw.b``;
+const GoToSearch = tw.b`cursor-pointer`;
+const PrimaryButton = tw.button`font-bold px-8 lg:px-10 py-3 rounded bg-primary-500 text-gray-100 hocus:bg-primary-700 focus:shadow-outline focus:outline-none transition duration-300`;
+
 
 const CryptoDetail = (props) => {
     const params = useParams();
@@ -23,12 +25,18 @@ const CryptoDetail = (props) => {
     const handleGoSearch = (link) => {
         history.push(`/cryptopunks/search?query=${link}`);
     }
+    const handleBuyNowClick = () => {
+        history.push(`/gotran`);
+    }
     return(
     <>
         <div style={{background:'grey'}}>
             <img src={`/images/${punk.src}`} style={{height:'500px',margin:'auto',imageRendering: 'pixelated'}}/>
         </div>
         <Container>
+            <TwoColumn>
+                <PrimaryButton onClick={()=>handleBuyNowClick()} className="pixel-font" as="a" href='#/'>Buy Now</PrimaryButton>
+            </TwoColumn>
             <TwoColumn>
                 <h2>crypto punk</h2>
             </TwoColumn>
