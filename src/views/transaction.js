@@ -37,16 +37,16 @@ const Transaction = () => {
     useEffect(()=>{
         let uuid = query.get('uuid');
         transactions.map(tr=>{
-            if(tr.uuid==uuid){
-                setTransaction(tr)
-                setTimeout(() => {
-                    setActionButton(<PrimaryButton onClick={()=>handleBuyAnother()}>Buy Another</PrimaryButton>)
-                    setStateObj(<DoneOutlineIcon />);
-                    setRightImage(rightColumnImage2);
-                }, 3000);
+            if(tr.uuid ===uuid){
+                setTransaction(tr);
+                console.log(tr);
             }
         })
-        console.log('sdfs')
+        setTimeout(() => {
+            setActionButton(<PrimaryButton onClick={()=>handleBuyAnother()}>Buy Another</PrimaryButton>)
+            setStateObj(<DoneOutlineIcon />);
+            setRightImage(rightColumnImage2);
+        }, 3000);
     },[]);
     const handleCancel = () => {
         history.push('/');

@@ -86,7 +86,7 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
   const collapseBreakpointCss = collapseBreakPointCssMap[collapseBreakpointClass];
 
   const defaultLogoLink = (
-    <LogoLink href="/home">
+    <LogoLink href="/">
       {/* {<img src={logo} alt="logo" />} */}
       Home
     </LogoLink>

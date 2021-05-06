@@ -10,23 +10,33 @@ const PunkImgs = tw.div`inline-flex`;
 const PunkImg = tw.img`cursor-pointer h-16`;
 const Container = tw.div`relative mx-5 pb-10`;
 const GridCol = tw.div`grid grid-cols-12`;
-const DivTitle = tw.div`border-b-2 border-gray-500`;
+const SearchInput = tw.div`flex border-red-800 w-1/2 mx-auto`;
+const FormInput = tw.input`appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`;
+const PrimaryButton = tw.button`font-bold px-8 lg:px-10 py-3 rounded bg-primary-500 text-gray-100 hocus:bg-primary-700 focus:shadow-outline focus:outline-none transition duration-300`;
+
 function useQuery() {
     return new URLSearchParams(useLocation().search);
-  }
+}
+
+function serchValue() {
+    console.log(FormInput.value);
+    return document.getElementsByTagName(FormInput).value;
+}
 const CryptoSearch = (props) => {
     const query = useQuery();
     const history = useHistory();
     const [punks,setPunks] = useState([]);
     const [sales,setSales] = useState([]);
+    const [searchValue,setSearchValue] = useState('');
 
-    useEffect(()=>{
+
+    const updatePage = (value) => {
         let tmp_sales=[] ;
         let tmppunks= _.filter(ct_punk,function(punk){
-            if(punk.type ==query.get('query')){
+            if(punk.type ==value){
                 return punk;
             };
-            if(punk.attr.indexOf(query.get('query'))!==-1){
+            if(punk.attr.indexOf(value)!==-1){
                 return punk;
             };
         })
@@ -44,14 +54,20 @@ const CryptoSearch = (props) => {
             })
         })
         setSales(tmp_sales);
-        console.log(tmp_sales)
+    }
+    useEffect(()=>{
+        updatePage(query.get('query'));
     },[])
     const handleGoDetail = (link) => {
         history.push(`/cryptopunks/detail/${link}`);
 
     }
     
-    
+    const handleGoSearch = (link) => {
+        history.push(`/cryptopunks/search?query=${link}`);
+        updatePage(link);
+    }
+
     const Punks = (props) =>{
         return (
             <GridCol>
@@ -76,8 +92,20 @@ const CryptoSearch = (props) => {
             </GridCol>
         )
     }
+
+
+    const handleSearchInputChange = (val) => {
+        setSearchValue(val);
+
+    }
+
     return(
         <>
+        <SearchInput>
+            <FormInput 
+                onChange={(e)=>handleSearchInputChange(e.target.value)} value={searchValue} />
+            <PrimaryButton onClick={()=>handleGoSearch(searchValue)}>Search</PrimaryButton>
+        </SearchInput>
         <Container>
             <DivTitle>{punks.length}  Punks found</DivTitle>
             <Punks punks={punks} />
