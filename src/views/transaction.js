@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import {useHistory,useLocation} from 'react-router-dom';
 import tw from "twin.macro";
-import _ from 'lodash';
+
 import transactions from 'data/transaction.json';
 import rightColumnImage1 from 'images/design-illustration.svg';
 import rightColumnImage2 from 'images/cardano.png';
@@ -28,12 +28,11 @@ function useQuery() {
 const Transaction = () => {
     let query = useQuery();
     const history =  useHistory();
-    console.log(query.get('uuid'),transactions);
+    // console.log(query.get('uuid'),transactions);
     const [transaction,setTransaction] = useState({});
     const [actionButton,setActionButton] = useState(<PrimaryButton onClick={()=>handleCancel()}>Cancel</PrimaryButton>);
     const [stateObj,setStateObj] = useState(<CircularProgress />);
     const [rightImage,setRightImage] = useState(rightColumnImage1);
-
     useEffect(()=>{
         let uuid = query.get('uuid');
         transactions.map(tr=>{
@@ -52,7 +51,7 @@ const Transaction = () => {
         history.push('/');
     }
     const handleBuyAnother = () => {
-        history.push(`/gotran_1`);;
+        history.push(`/gotran`);;
     }
     const copyToClipboard = (content) => {
         const el = document.createElement('textarea');

@@ -107,11 +107,11 @@ const CryptoSearch = (props) => {
             <PrimaryButton onClick={()=>handleGoSearch(searchValue)}>Search</PrimaryButton>
         </SearchInput>
         <Container>
-            <DivTitle>{punks.length}  Punks found</DivTitle>
+            <div>{punks.length}  Punks found</div>
             <Punks punks={punks} />
         </Container>
         <Container>
-            <DivTitle>{punks.length}  Sales found</DivTitle>
+            <div>{punks.length}  Sales found</div>
             <Sales sales={sales} />
         </Container>
         </>
