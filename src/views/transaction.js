@@ -37,10 +37,10 @@ const Transaction = () => {
         let uuid = query.get('uuid');
         transactions.map(tr=>{
             if(tr.uuid ===uuid){
-                setTransaction(tr)
+                setTransaction(tr);
+                console.log(tr);
             }
         })
-        console.log('sdfs')
         setTimeout(() => {
             setActionButton(<PrimaryButton onClick={()=>handleBuyAnother()}>Buy Another</PrimaryButton>)
             setStateObj(<DoneOutlineIcon />);

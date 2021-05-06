@@ -6,7 +6,7 @@ export default function useAnimatedNavToggler() {
   const [showNavLinks, setShowNavLinks] = useState(false);
   const [x, cycleX] = useCycle("0%", "150%");
   const animation = useAnimation();
-
+  // console.log(setShowNavLinks);
   const toggleNavbar = () => {
     setShowNavLinks(!showNavLinks);
     animation.start({ x: x, display: "block" });
