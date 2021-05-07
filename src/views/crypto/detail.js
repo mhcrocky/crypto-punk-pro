@@ -31,7 +31,7 @@ const CryptoDetail = (props) => {
     return(
     <>
         <div style={{background:'grey'}}>
-            <img src={`/images/${punk.src}`} style={{height:'500px',margin:'auto',imageRendering: isFirefox?'-moz-crisp-edges':'pixelated'}} alt={''}/>
+            <img src={`/images/${punk.src}`} style={{maxHeight:'512px',maxWidth:'512px',width:'100%',margin:'auto',imageRendering: isFirefox?'-moz-crisp-edges':'pixelated'}} alt={''}/>
         </div>
         <Container>
             <TwoColumn>
