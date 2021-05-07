@@ -37,8 +37,7 @@ const DecoratorBlob2 = styled(SvgDecoratorBlob2)`
 `;
 
 
-
-export default ({
+const Dmain = ({
   subheading = "FAQS",
   heading = "You have Questions ?",
   description = "And we have got answers to all of them. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
@@ -125,3 +124,5 @@ export default ({
     </Container>
   );
 };
+
+export default Dmain;

@@ -3,7 +3,7 @@ import tw from 'twin.macro';
 import ct_type from 'data/types';
 import ct_punk from 'data/data';
 import ct_attrs from 'data/attributes';
-import _, { map } from 'lodash';
+import _ from 'lodash';
 import { useHistory } from 'react-router-dom';
 const CryptoTable = tw.table`table-auto`;
 const CryptoThead = tw.thead`bg-gray-100`;
@@ -32,8 +32,10 @@ const CryptoAttr = (props) => {
                     if(punklen<8){
                         punklen++;
                         return(
-                        <img tw="cursor-pointer" onClick={()=>handleGoDetail(punk.id)} src={`/images/${punk.src}`} />                            
+                        <img tw="cursor-pointer" onClick={()=>handleGoDetail(punk.id)} src={`/images/${punk.src}`} alt={''} />                            
                         )
+                    }else{
+                        return(<></>)
                     }
                 }):''}
                 </PunkImg>
@@ -43,7 +45,7 @@ const CryptoAttr = (props) => {
     const TypesTable = (props) => {
         let tmpdata= props.types.map((col)=>{
             let punks= _.filter(props.punks,function(punk){
-                if(punk.type ==col.name){
+                if(punk.type === col.name){
                     return punk;
                 };
             })
@@ -98,9 +100,9 @@ const CryptoAttr = (props) => {
     
     const AttrCountTable = (props) => {
         let tmpdata = [];
-        for(var i = 0 ; i <= props.counts ; i ++){
+        for(let i = 0 ; i <= props.counts ; i ++){
             let punks= _.filter(props.punks,function(punk){
-                if(punk.attr.length ==i){
+                if(punk.attr.length === i){
                     return punk;
                 };
             })

@@ -9,7 +9,7 @@ const Grid = tw.div`grid grid-cols-3 px-5`;
 const GridCol = tw.div`py-5`;
 const GoToSearch = tw.b`cursor-pointer`;
 const PrimaryButton = tw.button`font-bold px-8 lg:px-10 py-3 rounded bg-primary-500 text-gray-100 hocus:bg-primary-700 focus:shadow-outline focus:outline-none transition duration-300`;
-
+const isFirefox = typeof InstallTrigger !== 'undefined';
 
 const CryptoDetail = (props) => {
     const params = useParams();
@@ -17,7 +17,7 @@ const CryptoDetail = (props) => {
     const history = useHistory();
     useEffect(()=>{
         ct_punk.map((cell)=>{
-            if(cell.id ==params.crypto_id){
+            if(cell.id == params.crypto_id){
                 setPunk(cell);
             }
         })
@@ -31,7 +31,7 @@ const CryptoDetail = (props) => {
     return(
     <>
         <div style={{background:'grey'}}>
-            <img src={`/images/${punk.src}`} style={{height:'500px',margin:'auto',imageRendering: 'pixelated'}}/>
+            <img src={`/images/${punk.src}`} style={{height:'500px',margin:'auto',imageRendering: isFirefox?'-moz-crisp-edges':'pixelated'}} alt={''}/>
         </div>
         <Container>
             <TwoColumn>

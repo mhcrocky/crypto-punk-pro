@@ -14,9 +14,9 @@ const LeftColumn = tw.div`relative lg:w-6/12 lg:pr-12 flex-shrink-0 text-center 
 const RightColumn = tw.div`relative mt-12 lg:mt-0 flex flex-col justify-center`;
 const TransactionForm = tw.form`w-full max-w-lg`;
 const TrFormGrid6 = tw.div`flex flex-wrap -mx-3 mb-6`;
-const Divhf = tw.div`w-full md:w-1/2 px-3 mb-6 md:mb-0`;
-const Divfull = tw.div`w-full px-3 mb-6 md:mb-0`;
-const Divfullpb3 = tw.div`w-full px-3 mb-6 md:mb-0 md:pb-3 flex`;
+const SectionHf = tw.div`w-full md:w-1/2 px-3 mb-6 md:mb-0`;
+const SectionFull = tw.div`w-full px-3 mb-6 md:mb-0`;
+const SectionFullPb3 = tw.div`w-full px-3 mb-6 md:mb-0 md:pb-3 flex`;
 const FormLabel = tw.label`block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2`;
 const FormInput = tw.input`appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`;
 const SubtitleP = tw.p`text-red-500 text-lg text-center p-5`;
@@ -38,14 +38,13 @@ const Transaction = () => {
         transactions.map(tr=>{
             if(tr.uuid ===uuid){
                 setTransaction(tr);
-                console.log(tr);
+                setActionButton(<PrimaryButton onClick={()=>handleBuyAnother()}>Buy Another</PrimaryButton>)
+                setStateObj(<DoneOutlineIcon />);
+                setRightImage(rightColumnImage2);
             }
+            return(<></>);
         })
-        setTimeout(() => {
-            setActionButton(<PrimaryButton onClick={()=>handleBuyAnother()}>Buy Another</PrimaryButton>)
-            setStateObj(<DoneOutlineIcon />);
-            setRightImage(rightColumnImage2);
-        }, 3000);
+
     },[]);
     const handleCancel = () => {
         history.push('/');
@@ -67,38 +66,38 @@ const Transaction = () => {
                 <LeftColumn>
                 <TransactionForm>
                     <TrFormGrid6>
-                        <Divfull>
+                        <SectionFull>
                             <FormLabel>
                                 Title
                             </FormLabel>
                             <FormInput  type="text" value={'Awaiting Transaction'} placeholder="Jane" disabled/>
-                        </Divfull>
-                        <Divfull>
+                        </SectionFull>
+                        <SectionFull>
                             <SubtitleP>Subtitle Text</SubtitleP>
-                        </Divfull>
-                        <Divfullpb3>
+                        </SectionFull>
+                        <SectionFullPb3>
                             <div style={{width:'inherit'}}>
                                 <FormInput type="text" value={transaction.value} placeholder="Jane" disabled/>
                             </div>
                             <CopyButton onClick={()=>copyToClipboard(transaction.value)} value={transaction.value} type={'button'}>
                                 <FileCopyIcon />
                             </CopyButton>
-                        </Divfullpb3>
-                        <Divfullpb3>
+                        </SectionFullPb3>
+                        <SectionFullPb3>
                             <div style={{width:'inherit'}}>
                                 <FormInput type="text" value={transaction.address} placeholder="Jane" disabled/>
                             </div>
                             <CopyButton onClick={()=>copyToClipboard(transaction.address)} type={'button'}>
                                 <FileCopyIcon />
                             </CopyButton>
-                        </Divfullpb3>
-                        <Divhf>
+                        </SectionFullPb3>
+                        <SectionHf>
                         {actionButton}
                         
-                        </Divhf>
-                        <Divhf>
+                        </SectionHf>
+                        <SectionHf>
                            {stateObj}
-                        </Divhf>
+                        </SectionHf>
                     </TrFormGrid6>
                 </TransactionForm>
                 </LeftColumn>
