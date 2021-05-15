@@ -2,6 +2,7 @@ import React from "react"
 import "style.css"
 import "tailwindcss/dist/base.css"
 import Header from "components/headers/light.js";
+import BreadCrumbs from 'components/headers/breadcrumbs.js';
 import Rotas from "./rotas"
 import Footer from "components/footers/MiniCenteredFooter"
 import AnimationRevealPage from "./helpers/AnimationRevealPage"
@@ -15,6 +16,7 @@ function App() {
     <>
     <Router history={hist}>
      <Header />
+     <BreadCrumbs />
       <AnimationRevealPage>
         <Rotas />
       </AnimationRevealPage>     

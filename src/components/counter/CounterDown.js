@@ -114,7 +114,9 @@ class Counter extends React.Component {
                 <CountdownDisplay countdown={this.state.countdown} unixEndDate={this.renderCountdownDate().unixEndDate} />  
               }
               {!this.state.isCountdownSet &&
-                <img src={countAfterImage}/>  
+                <table>
+                  
+                </table> 
               }
          </React.Fragment>
         )        

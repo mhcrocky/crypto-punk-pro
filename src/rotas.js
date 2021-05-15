@@ -8,7 +8,7 @@ import CryptoSearch from './views/crypto/search';
 import CryptoDetail from './views/crypto/detail';
 function Rotas(){
     const uuid = '0126c9ec-95c9-4952-1df5-c2989bdd1948';
-
+    
     return (
         <Switch>
             <Redirect from={'/gotran'} to={`/transaction?uuid=${uuid}`} />
