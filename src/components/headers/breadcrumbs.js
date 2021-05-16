@@ -1,4 +1,3 @@
-import react from 'react';
 import tw from 'twin.macro';
 import {useHistory, useLocation} from 'react-router-dom';
 const BCNav = tw.nav` bg-gray-lightest p-3 rounded font-sans w-full m-4`;
@@ -8,7 +7,6 @@ const BCSpan = tw.span`mx-2 text-black`;
 const BreadCrumbs  = () => {
     let history = useHistory();
     let location  =  useLocation();
-    console.log(location)  
     const routers = [
         {path:'/cryptopunks/attributes',name:'Attrubutes'},
         {path:'/cryptopunks/search',name:'Search'},

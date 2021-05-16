@@ -36,3 +36,13 @@
     margin-bottom: 10px;
     font-family: Pixelfont;
 }
+.price_table_name:after{
+    content: '............................................';
+    box-sizing: border-box;
+}
+.price_table_name{
+    white-space: nowrap;
+    flex: 0 0 auto;
+    width: 58.3333333333%;
+    overflow: hidden;
+}

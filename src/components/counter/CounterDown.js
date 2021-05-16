@@ -4,7 +4,8 @@ import moment from 'moment';
 import { contextType } from 'react-modal';
 import { useContext } from 'react';
 import countAfterImage from 'images/design-illustration.svg';
-
+import tw from 'twin.macro';
+import prices from 'data/price.json';
 
 const CountdownDisplay = ({ countdown, unixEndDate }) => {
 
@@ -33,6 +34,31 @@ const CountdownDisplay = ({ countdown, unixEndDate }) => {
     );
   } 
 
+const TBLIndex = tw.div``;
+const TBLName = tw.div``;
+const TBLValue = tw.div``;
+const TR = tw.div`flex`;
+const PriceTable = (props) => {
+  console.log(props.data)
+  return(
+    <div style={{ fontFamily:'Pixelfont' }}>
+      <div className={'title'}>PRICE</div>
+      {props.data.map((cell,index)=>{
+        return(
+          <TR style={{ fontSize: '1.2rem' }}>
+            <TBLIndex style={{ padding:'.25rem' }}>
+              <div style={{ fontSize: '1.2rem',border: '2px solid #000',padding: '3px 0 0 0',borderRadius: '5px',width: '35px',textAlign: 'center'}}>
+              {index+1}
+              </div>
+            </TBLIndex>
+            <TBLIndex className={'price_table_name'} style={{ padding:'7px' }}>{cell.name}</TBLIndex>
+            <TBLIndex style={{ padding:'7px' }}>{cell.value}</TBLIndex>
+          </TR>
+        )
+      })}
+    </div>
+  )
+}
 
 
 class Counter extends React.Component { 
@@ -107,16 +133,28 @@ class Counter extends React.Component {
     
   }  
 
-    render() {        
+    render() {   
+      let price_data = [];
+      for (let index = 0; index < 10; index++) {
+        let tmp = 0;
+        prices.map((price)=>{
+          if((price.value>(index*1000))&&(price.value<((index+1)*1000))){
+            tmp++;
+          }
+        });
+        price_data.push({
+          name:`${index*1000}~${(index+1)*1000}`,
+          value:tmp
+        });
+        
+      }    
        return (
          <React.Fragment>   
               {this.state.isCountdownSet &&
                 <CountdownDisplay countdown={this.state.countdown} unixEndDate={this.renderCountdownDate().unixEndDate} />  
               }
               {!this.state.isCountdownSet &&
-                <table>
-                  
-                </table> 
+                <PriceTable data={price_data}/> 
               }
          </React.Fragment>
         )        

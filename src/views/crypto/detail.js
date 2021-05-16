@@ -15,13 +15,24 @@ const CryptoDetail = (props) => {
     const params = useParams();
     const [punk,setPunk] = useState({});
     const history = useHistory();
+    const [punkTypeCouunt,setPunkTypeCount] = useState(0);
     useEffect(()=>{
         ct_punk.map((cell)=>{
             if(cell.id == params.crypto_id){
                 setPunk(cell);
             }
+            return(<></>)
         })
     },[])
+    useEffect(()=>{
+        let count_punk = 0;
+        ct_punk.map((pk)=>{
+            if(pk.type === punk.type){
+                count_punk++;
+            }
+        })
+        setPunkTypeCount(count_punk);
+    },[punk]);
     const handleGoSearch = (link) => {
         history.push(`/cryptopunks/search?query=${link}`);
     }
@@ -35,26 +46,24 @@ const CryptoDetail = (props) => {
         </div>
         <Container>
             <TwoColumn>
-                <PrimaryButton onClick={()=>handleBuyNowClick()} className="pixel-font" as="a" href='#/'>Buy Now</PrimaryButton>
+                <h2 style={{ width:'100%' }}>crypto punk</h2>
+                <PrimaryButton onClick={()=>handleBuyNowClick()} className="pixel-font" as="a" href='#/'>BuyNow</PrimaryButton>
             </TwoColumn>
             <TwoColumn>
-                <h2>crypto punk</h2>
-            </TwoColumn>
-            <TwoColumn>
-                <h2>One of <GoToSearch onClick={()=>handleGoSearch(punk.type)} >{punk.type}</GoToSearch> Punks.</h2>
+                <h2>One of {punkTypeCouunt}<GoToSearch onClick={()=>handleGoSearch(punk.type)} >{punk.type}</GoToSearch> Punks.</h2>
             </TwoColumn>
             <TwoColumn>
                 <h2>Accesories</h2>
             </TwoColumn>
             <Grid>
-                {punk.attr?punk.attr.map((attr)=>{
+                {punk.attr?punk.attr.map((attr,key)=>{
                     let attr_punks= _.filter(ct_punk,function(punk){
                         if(punk.attr.indexOf(attr)!==-1){
                             return punk;
                         };
                     })
                     return (
-                    <GridCol>
+                    <GridCol key={key}>
                         <GoToSearch onClick={()=>handleGoSearch(attr)} >{attr}</GoToSearch>
                         <br/>
                         {attr_punks.length} Punks have this.

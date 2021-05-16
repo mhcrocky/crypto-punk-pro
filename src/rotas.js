@@ -15,6 +15,7 @@ function Rotas(){
             <Route path="/cryptopunks/attributes" component={CryptoAttr}/>
             <Route path="/cryptopunks/search" component={CryptoSearch}/>
             <Route path="/cryptopunks/detail/:crypto_id" component={CryptoDetail}/>
+            <Route path="/cryptopunks" component={CryptoAttr} />
             <Route path="/cryptopunks/*" render={()=><div>404</div>} />
             <Route path="/transaction" component={Transaction} />
             <Route path="/" component={Home} />
