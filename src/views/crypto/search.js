@@ -37,9 +37,9 @@ const CryptoSearch = (props) => {
             };
         })
         setPunks(tmppunks);
-        _.filter(ct_sale,function(sale){
-            _.filter(tmppunks,function(punk){
-                if(sale.punk_id === punk.id){
+        _.map(ct_sale,function(sale){
+            _.map(tmppunks,function(punk){
+                if(sale.punk_id == punk.id){
                     tmp_sales.push({
                         punk_id:punk.id,
                         x:sale.x,
@@ -68,9 +68,9 @@ const CryptoSearch = (props) => {
         return (
             <GridCol>
             {props.punks.map((punk,key)=>{
-                return(<>
-                    <PunkImg onClick={()=>handleGoDetail(key)} src={`/images/${punk.src}`} />                            
-                </>)
+                return(
+                    <PunkImg key={key} onClick={()=>handleGoDetail(punk.id)} src={`/images/${punk.src}`} />                            
+                )
             })}
             </GridCol>
         )
@@ -79,7 +79,7 @@ const CryptoSearch = (props) => {
         return(
             <GridCol>
             {props.sales.map((sale,key)=>{
-                return(<div>
+                return(<div key={key}>
                     <PunkImg onClick={()=>handleGoDetail(key)} src={`/images/${sale.img_src}`} /> 
                     {sale.x} Ξ<br/>   
                     ${sale.y} M                           
@@ -107,7 +107,7 @@ const CryptoSearch = (props) => {
             <Punks punks={punks} />
         </Container>
         <Container>
-            <div>{punks.length}  Sales found</div>
+            <div>{sales.length}  Sales found</div>
             <Sales sales={sales} />
         </Container>
         </>

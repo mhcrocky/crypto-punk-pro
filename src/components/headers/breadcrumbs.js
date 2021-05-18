@@ -1,42 +1,71 @@
 import tw from 'twin.macro';
-import {useHistory, useLocation} from 'react-router-dom';
-const BCNav = tw.nav` bg-gray-lightest p-3 rounded font-sans w-full m-4`;
+import {useHistory, useLocation,useParams,Switch,Route} from 'react-router-dom';
+const BCNav = tw.nav` bg-gray-300 p-3 px-12 rounded font-sans mx-8 mt-8`;
 const BCOl = tw.ol`list-none text-black flex text-gray-lightest`;
-const BCLink =  tw.a`text-blue-100 font-bold text-black`;
-const BCSpan = tw.span`mx-2 text-black`;
+const BCLink =  tw.a`text-blue-100 font-bold text-black cursor-pointer`;
+const Slash = tw.span`mx-2 text-black`;
+
+const DetailBC = () => {
+    let { id } = useParams();
+
+  return (
+    <li>
+      <BCLink>{id}</BCLink>
+    </li>
+  );
+}
+
 const BreadCrumbs  = () => {
+    let { id } = useParams();
     let history = useHistory();
     let location  =  useLocation();
+    let punk_id = '';
     const routers = [
-        {path:'/cryptopunks/attributes',name:'Attrubutes'},
-        {path:'/cryptopunks/search',name:'Search'},
-        {path:'/cryptopunks/detail/:crypto_id',name:'Detail'},
-        {path:'/cryptopunks/*',name:'404'},
-        {path:'/transaction',name:'Transaction'},
-        {path:'/',name:'Home'},
-        {path:'*',name:'404'}
+        {
+            path:'/cryptopunks/attributes',
+            breadcrumb:[
+                {name:'cryptopunks',isSlash:true,link:'/cryptopunks'},
+                {name:'attributes',isSlash:false,link:'/cryptopunks/attributes'}
+            ]
+        },{
+            path:'/cryptopunks/search',
+            breadcrumb:[
+                {name:'cryptopunks',isSlash:true,link:'/cryptopunks'},
+                {name:'cryptopunks',isSlash:false,link:'/cryptopunks/detail'},
+            ]
+        },{
+            path:'/cryptopunks/detail/',
+            breadcrumb:[
+                {name:'cryptopunks',isSlash:true,link:'/cryptopunks'}
+                // {name:'attributes',isSlash:true,link:'/cryptopunks/attributes'},
+            ]
+        }
     ]
-    let res = routers.filter(router=>router.path ===location.pathname);
-    let router;
+    let res = routers.filter(router=>location.pathname.includes(router.path));
+    let breadcrumbs;
 
     const handleGoParent =(link) =>{
-        history.push('/'+link);
+        history.push(link);
     }
     if(res[0]){
-        router = res[0];
-        if(router.path.split('/').length>2){
+        breadcrumbs = res[0].breadcrumb;
             return(
                 <BCNav>
                     <BCOl>
-                        <li><BCLink onClick={()=>handleGoParent(router.path.split('/')[1])}>{router.path.split('/')[1]}</BCLink></li>
-                        <li><BCSpan>/</BCSpan></li>
-                        <li><BCLink>{router.name}</BCLink></li>
+                    {breadcrumbs.map((bc,index)=>{
+                        return(
+                            <li key={index}>
+                                <BCLink onClick={()=>handleGoParent(bc.link)}>{bc.name}</BCLink>
+                                {bc.isSlash?(<Slash>/</Slash>):<Slash></Slash>}
+                            </li>
+                        )
+                    })}
+                        <Switch>
+                            <Route path="/cryptopunks/detail/:id" children={<DetailBC/>} />
+                        </Switch>
                     </BCOl>
                 </BCNav>
             )
-        }else{
-            return (<></>)
-        }
     }    
     else{
         return (<></>)

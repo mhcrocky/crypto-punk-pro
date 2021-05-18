@@ -28,7 +28,6 @@ function useQuery() {
 const Transaction = () => {
     let query = useQuery();
     const history =  useHistory();
-    // console.log(query.get('uuid'),transactions);
     const [transaction,setTransaction] = useState({});
     const [actionButton,setActionButton] = useState(<PrimaryButton onClick={()=>handleCancel()}>Cancel</PrimaryButton>);
     const [stateObj,setStateObj] = useState(<CircularProgress />);

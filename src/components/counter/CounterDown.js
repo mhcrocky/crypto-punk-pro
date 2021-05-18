@@ -39,13 +39,12 @@ const TBLName = tw.div``;
 const TBLValue = tw.div``;
 const TR = tw.div`flex`;
 const PriceTable = (props) => {
-  console.log(props.data)
   return(
     <div style={{ fontFamily:'Pixelfont' }}>
       <div className={'title'}>PRICE</div>
       {props.data.map((cell,index)=>{
         return(
-          <TR style={{ fontSize: '1.2rem' }}>
+          <TR style={{ fontSize: '1.2rem' }} key={index}>
             <TBLIndex style={{ padding:'.25rem' }}>
               <div style={{ fontSize: '1.2rem',border: '2px solid #000',padding: '3px 0 0 0',borderRadius: '5px',width: '35px',textAlign: 'center'}}>
               {index+1}

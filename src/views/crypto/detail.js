@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import tw from 'twin.macro';
 import ct_punk from 'data/data';
+import ct_sale from 'data/sale';
 import _ from 'lodash';
 const Container = tw.div`relative mx-5`;
 const TwoColumn = tw.div`flex flex-col lg:flex-row md:items-center max-w-screen-xl mx-auto py-2 md:py-3`;
@@ -14,17 +15,31 @@ const isFirefox = typeof InstallTrigger !== 'undefined';
 const CryptoDetail = (props) => {
     const params = useParams();
     const [punk,setPunk] = useState({});
+    const [isSale,setIsSale] = useState(false);
     const history = useHistory();
     const [punkTypeCouunt,setPunkTypeCount] = useState(0);
     useEffect(()=>{
         ct_punk.map((cell)=>{
             if(cell.id == params.crypto_id){
+                let tmpsale = [];
+                _.map(ct_sale,(sale)=>{
+                    if(sale.punk_id == cell.id){
+                        tmpsale.push(sale);
+                    }
+                })
+                cell.sale = tmpsale;
                 setPunk(cell);
             }
             return(<></>)
         })
     },[])
     useEffect(()=>{
+
+        if(punk.sale){
+            if(punk.sale.length){
+                setIsSale(true);
+            }
+        }
         let count_punk = 0;
         ct_punk.map((pk)=>{
             if(pk.type === punk.type){
@@ -47,7 +62,8 @@ const CryptoDetail = (props) => {
         <Container>
             <TwoColumn>
                 <h2 style={{ width:'100%' }}>crypto punk</h2>
-                <PrimaryButton onClick={()=>handleBuyNowClick()} className="pixel-font" as="a" href='#/'>BuyNow</PrimaryButton>
+                {isSale?<PrimaryButton onClick={()=>handleBuyNowClick()} className="pixel-font" as="a" href='#/'>BuyNow</PrimaryButton>:<></>}
+                
             </TwoColumn>
             <TwoColumn>
                 <h2>One of {punkTypeCouunt}<GoToSearch onClick={()=>handleGoSearch(punk.type)} >{punk.type}</GoToSearch> Punks.</h2>

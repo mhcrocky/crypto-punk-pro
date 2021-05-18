@@ -108,7 +108,6 @@ const CryptoAttr = (props) => {
             })
             tmpdata.push(punks)
         }    
-        console.log(tmpdata)
 
         return (
         <CryptoTable>
